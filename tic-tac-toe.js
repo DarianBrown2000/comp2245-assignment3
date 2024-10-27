@@ -5,10 +5,18 @@ document.addEventListener("DOMContentLoaded", () => {
     // Loop through each div and add the 'square' class
     squares.forEach((square) => {
         square.classList.add("square");
+    
+	// Add mouseover and mouseleave event listeners for hover effect
+        square.addEventListener("mouseover", () => {
+            square.classList.add("hover"); // Apply the hover style
+        });
+        square.addEventListener("mouseleave", () => {
+            square.classList.remove("hover"); // Remove the hover style
+        });
     });
 
     let currentPlayer = "X"; // Start with player X
-    const gameState = Array(9).fill(null); // Array to keep track of the game state
+    const gameState = Array(9).fill(null); // Array to keep track of game state
 
     // Function to handle click events on each square
     function handleSquareClick(event) {
