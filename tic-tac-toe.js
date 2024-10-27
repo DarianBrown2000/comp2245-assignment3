@@ -11,11 +11,17 @@ document.addEventListener("DOMContentLoaded", () => {
         [0, 4, 8], [2, 4, 6]             // Diagonals
     ];
 
-    // Loop through each div and add the 'square' class
+      // Create "New Game" button
+      const newGameButton = document.createElement("button");
+      newGameButton.textContent = "New Game";
+      newGameButton.classList.add("btn");
+      statusDiv.after(newGameButton); // Insert after the status div
+
+    // Loops through each div and add the 'square' class
     squares.forEach((square) => {
         square.classList.add("square");
 
-        // Add mouseover and mouseleave event listeners for hover effect
+        // Adds mouseover and mouseleave event listeners for hover effect
         square.addEventListener("mouseover", () => {
             square.classList.add("hover"); // Apply the hover style
         });
