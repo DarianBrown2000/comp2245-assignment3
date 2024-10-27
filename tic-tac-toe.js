@@ -1,9 +1,33 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Selects all divs inside the #board element
-    const squares = document.querySelectorAll('#board div');
+document.addEventListener("DOMContentLoaded", () => {
+    // Select all divs inside the #board element
+    const squares = document.querySelectorAll("#board div");
 
-    // Loops through each div and add the 'square' class
-    squares.forEach(function(square) {
-        square.classList.add('square');
+    // Loop through each div and add the 'square' class
+    squares.forEach((square) => {
+        square.classList.add("square");
+    });
+
+    let currentPlayer = "X"; // Start with player X
+    const gameState = Array(9).fill(null); // Array to keep track of the game state
+
+    // Function to handle click events on each square
+    function handleSquareClick(event) {
+        const square = event.target;
+        const squareIndex = Array.from(squares).indexOf(square);
+
+        // Checks if the square is already filled
+        if (gameState[squareIndex] === null) {
+            gameState[squareIndex] = currentPlayer; // Update game state
+            square.textContent = currentPlayer; // Display X or O in the square
+            square.classList.add(currentPlayer); // Add appropriate class for styling
+
+            // Switches players
+            currentPlayer = currentPlayer === "X" ? "O" : "X";
+        }
+    }
+
+    // Adds click event listeners to each square
+    squares.forEach((square) => {
+        square.addEventListener("click", handleSquareClick);
     });
 });
