@@ -17,8 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
       newGameButton.classList.add("btn");
       statusDiv.after(newGameButton); // Insert after the status div
 
-    // Loops through each div and add the 'square' class
-    squares.forEach((square) => {
+      // Loops through each div and add the 'square' class
+      squares.forEach((square) => {
         square.classList.add("square");
 
         // Adds mouseover and mouseleave event listeners for hover effect
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 statusDiv.textContent = `Congratulations! ${currentPlayer} is the Winner!`;
                 statusDiv.classList.add("you-won");
             } else {
-                // Switch players if no winner
+                // Switches players if no winner
                 currentPlayer = currentPlayer === "X" ? "O" : "X";
             }
         }
@@ -65,5 +65,18 @@ document.addEventListener("DOMContentLoaded", () => {
     // Add click event listeners to each square
     squares.forEach((square) => {
         square.addEventListener("click", handleSquareClick);
+    });
+
+     // Reset game when "New Game" button is clicked
+    newGameButton.addEventListener("click", () => {
+        gameState.fill(null); // Clear the game state array
+        squares.forEach(square => {
+            square.textContent = ""; // Clear X or O from the squares
+            square.classList.remove("X", "O"); // Remove X or O styling
+        });
+        currentPlayer = "X"; // Reset starting player
+        statusDiv.textContent = "Move your mouse over a square and click to play an X or an O.";
+        statusDiv.classList.remove("you-won"); // Remove the winning message style
+
     });
 });
